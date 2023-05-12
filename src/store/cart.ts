@@ -24,10 +24,10 @@ export const useCart = create(
 					produce((state: CartType) => {
 						const coffeeExistInCart = original(state.items)!.findIndex((item) => item.id === coffee.id)
 
-						if (coffeeExistInCart >= 0) {
+						if (coffeeExistInCart < 0) {
 							state.items.push(coffee)
 						} else {
-							state.items[coffeeExistInCart].quantity += 1
+							state.items[coffeeExistInCart].quantity += coffee.quantity
 						}
 					})
 				)
@@ -51,7 +51,7 @@ export const useCart = create(
 						if (index > -1 && method === 'increment') {
 							state.items[index].quantity += 1
 						} else if (index > -1 && method === 'decrement' && state.items[index].quantity !== 1) {
-							state.items[index].quantity += 1
+							state.items[index].quantity -= 1
 						}
 					})
 				)
