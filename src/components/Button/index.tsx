@@ -1,13 +1,14 @@
 import clsx from 'clsx'
+import { ButtonHTMLAttributes } from 'react'
 
-type ButtonType = {
+type ButtonType = ButtonHTMLAttributes<HTMLButtonElement> & {
 	children: React.ReactNode
 	className?: string
 	variant: 'yellow' | 'yellow-light' | 'purple-dark' | 'gray'
 	size: 'sm' | 'md' | 'lg'
 }
 
-export function Button({ children, variant = 'gray', size = 'md', className = '' }: ButtonType) {
+export function Button({ children, variant = 'gray', size = 'md', className = '', ...props }: ButtonType) {
 	return (
 		<button
 			className={clsx(
@@ -25,6 +26,7 @@ export function Button({ children, variant = 'gray', size = 'md', className = ''
 				},
 				className
 			)}
+			{...props}
 		>
 			{children}
 		</button>
