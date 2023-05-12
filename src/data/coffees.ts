@@ -92,7 +92,7 @@ export const coffees: CoffeeType[] = [
 		id: 11,
 		name: 'Cubano',
 		description: 'Drink gelado de café expresso com rum, creme de leite e hortelã',
-		photo: '',
+		photo: 'cubano',
 		price: 9.9,
 		tags: ['especial', 'com leite'],
 	},
