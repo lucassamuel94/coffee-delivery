@@ -1,3 +1,4 @@
+import { Header } from './components/Header'
 import './globals.css'
 import { baloo2, roboto } from '@/fonts'
 
@@ -12,6 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body
 				className={`${roboto.variable} ${baloo2.variable} font-sans bg-gray-background text-gray-text leading-normal text-base`}
 			>
+				<Header />
 				{children}
 			</body>
 		</html>
