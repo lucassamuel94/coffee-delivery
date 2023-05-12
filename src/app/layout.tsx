@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang='pt-BR'>
 			<body
-				className={`${roboto.variable} ${baloo2.variable} font-sans bg-gray-background text-gray-text leading-normal text-base`}
+				className={`${roboto.variable} ${baloo2.variable} font-sans bg-gray-background text-gray-text leading-normal text-base min-h-screen`}
 			>
 				<Header />
 				{children}
