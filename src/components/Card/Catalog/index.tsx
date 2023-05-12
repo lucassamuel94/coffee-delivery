@@ -16,7 +16,7 @@ type CardCatalog = {
 }
 
 export function CardCatalog({ coffee }: CardCatalog) {
-	const { add, items } = useCart()
+	const { add } = useCart()
 	const [quantity, setQuantity] = useState(1)
 
 	function onIncrement() {
@@ -34,8 +34,6 @@ export function CardCatalog({ coffee }: CardCatalog) {
 		}
 
 		add(newCoffeeCart)
-
-		// console.log(items.findIndex((item) => item.id === coffee.id))
 	}
 
 	return (
