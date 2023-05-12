@@ -37,13 +37,15 @@ module.exports = {
 			base: '16px',
 			lg: '18px',
 			xl: '20px',
-			title: {
-				xs: '18px',
-				sm: '20px',
-				md: '24',
-				lg: '32px',
-				xl: '48px',
-			},
+			'title-xs': '18px',
+			'title-sm': '20px',
+			'title-md': '24px',
+			'title-lg': '32px',
+			'title-xl': '48px',
+		},
+		fontFamily: {
+			sans: ['var(--font-roboto)'],
+			title: ['var(--font-baloo2)'],
 		},
 		lineHeight: {
 			normal: 1.3,
