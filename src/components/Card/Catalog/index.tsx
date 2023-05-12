@@ -30,6 +30,7 @@ export function CardCatalog({ coffee }: CardCatalog) {
 	function addCoffeeCart() {
 		const newCoffeeCart = {
 			...coffee,
+			totalPrice: coffee.price * quantity,
 			quantity: quantity,
 		}
 

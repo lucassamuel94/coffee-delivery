@@ -5,11 +5,19 @@ import { produce, original } from 'immer'
 import { CoffeeType } from '@/data/coffees'
 
 export type CoffeeItemCard = CoffeeType & {
+	id: number
+	name: string
+	description: string
+	photo: string
+	price: number
+	totalPrice: number
+	tags: string[]
 	quantity: number
 }
 
 export type CartType = {
 	items: CoffeeItemCard[]
+	delivery: number
 	add: (coffee: CoffeeItemCard) => void
 	remove: (coffee: CoffeeItemCard) => void
 	changeQuantity: (coffee: CoffeeItemCard, method: 'increment' | 'decrement') => void
@@ -19,6 +27,7 @@ export const useCart = create(
 	persist<CartType>(
 		(set) => ({
 			items: [],
+			delivery: 3.5,
 			add: (coffee: CoffeeItemCard) => {
 				set(
 					produce((state: CartType) => {
@@ -50,8 +59,10 @@ export const useCart = create(
 
 						if (index > -1 && method === 'increment') {
 							state.items[index].quantity += 1
+							state.items[index].totalPrice = state.items[index].price * state.items[index].quantity
 						} else if (index > -1 && method === 'decrement' && state.items[index].quantity !== 1) {
 							state.items[index].quantity -= 1
+							state.items[index].totalPrice = state.items[index].price * state.items[index].quantity
 						}
 					})
 				)

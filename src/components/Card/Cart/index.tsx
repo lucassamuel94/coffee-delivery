@@ -49,7 +49,7 @@ export function CardCart({ coffee }: CardCartType) {
 				</div>
 			</div>
 
-			<span className='font-bold'>{priceWithBRL(coffee.price)}</span>
+			<span className='font-bold'>{priceWithBRL(coffee.totalPrice)}</span>
 		</div>
 	)
 }
