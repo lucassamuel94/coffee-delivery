@@ -3,8 +3,21 @@
 import { Input, Select } from '@/components'
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from '@phosphor-icons/react'
 import { useState } from 'react'
+import { useFormContext } from 'react-hook-form'
+
+type ErrorsType = {
+	errors: {
+		[key: string]: {
+			message: string
+		}
+	}
+}
 
 export function CompleteYourOrder() {
+	const { register, formState } = useFormContext()
+
+	const { errors } = formState as unknown as ErrorsType
+
 	const [method, setMethod] = useState('')
 
 	const methodOfPayments = [
@@ -31,7 +44,6 @@ export function CompleteYourOrder() {
 	return (
 		<div className='space-y-4'>
 			<h2 className='font-bold font-title text-title-xs text-gray-subtitle'>Complete seu pedido</h2>
-
 			<div className='p-10 space-y-8 rounded-md bg-gray-card'>
 				<header className='flex items-start gap-2 '>
 					<MapPinLine size='22' className='text-yellow-dark' />
@@ -44,17 +56,40 @@ export function CompleteYourOrder() {
 				</header>
 
 				<div className='space-y-4'>
-					<Input placeholder='CEP' />
-					<Input placeholder='Rua' />
+					<Input placeholder='CEP' {...register('zipCode')} error={errors.zipCode?.message} />
+
+					<Input placeholder='Rua' {...register('street')} error={errors.street?.message} />
 					<div className='flex flex-col gap-4 lg:flex-row'>
-						<Input placeholder='Número' className='lg:max-w-[208px]' />
-						<Input placeholder='Complemento' opcional className='flex-1' />
+						<Input
+							placeholder='Número'
+							className='lg:max-w-[208px]'
+							{...register('number')}
+							error={errors.number?.message}
+							maxLength={9}
+						/>
+						<Input
+							placeholder='Complemento'
+							opcional
+							className='flex-1'
+							{...register('complement')}
+							error={errors.complement?.message}
+						/>
 					</div>
 
 					<div className='flex flex-col gap-4 lg:flex-row'>
-						<Input placeholder='Bairro' className='lg:max-w-[208px]' />
-						<Input placeholder='Cidade' className='flex-1' />
-						<Input placeholder='UF' className='lg:max-w-[60px]' />
+						<Input
+							placeholder='Bairro'
+							className='lg:max-w-[208px]'
+							{...register('district')}
+							error={errors.district?.message}
+						/>
+						<Input placeholder='Cidade' className='flex-1' {...register('city')} error={errors.city?.message} />
+						<Input
+							placeholder='UF'
+							className='lg:max-w-[60px]'
+							{...register('country')}
+							error={errors.country?.message}
+						/>
 					</div>
 				</div>
 			</div>
